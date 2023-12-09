@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
-        <Style TargetType="TextBox">
+        <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="TextBox" x:Key="yellow_box">
                 <Setter Property="Foreground" Value="Blue"/>
             <Style.Triggers>
                 
@@ -19,12 +19,38 @@
                     <Setter Property="Foreground" Value="Orange"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                     <Setter Property="FontStyle" Value="Italic"/>
-
+    
 
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
-       
+        <Style TargetType="ListBox">
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="3"/>
+
+        </Style>
+        
+        <Style BasedOn="{StaticResource {x:Type ListBoxItem}}" TargetType="ListBoxItem" x:Key="hover_right_panel">
+            <Setter Property="Background" Value="#ffb6c1"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Padding" Value="0"/>
+            
+
+
+
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsKeyboardFocused" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Foreground" Value="Cyan"/>
+
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+
+
+
         <Style BasedOn="{StaticResource {x:Type TextBlock}}"
                TargetType="TextBlock"
                x:Key="animacja">
@@ -41,6 +67,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
 
 
     </Window.Resources>
@@ -68,12 +95,27 @@
             </Popup>
         </StackPanel>
         <StackPanel Background="LightYellow" Grid.Column="2">
-            <TextBox Margin="10" Height="20" ></TextBox>
-            <TextBox Margin="10" Height="20" ></TextBox>
-            <TextBox Margin="10" Height="20"></TextBox>
+            <TextBox Margin="10" Height="20" Style="{StaticResource yellow_box}"></TextBox>
+            <TextBox Margin="10" Height="20" Style="{StaticResource yellow_box}"></TextBox>
+            <TextBox Margin="10" Height="20" Style="{StaticResource yellow_box}"></TextBox>
         </StackPanel>
     
         <StackPanel Background="#ffb6c1" Grid.RowSpan="2" Grid.Column="3">
+            
+
+            <ListBox Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Background="Transparent" BorderBrush="Transparent">
+                <ListBoxItem Style="{StaticResource hover_right_panel}">kot ma ale</ListBoxItem>
+
+                <ListBoxItem Style="{StaticResource hover_right_panel}">kot ma ale</ListBoxItem>
+                <ListBoxItem Style="{StaticResource hover_right_panel}">kot ma ale</ListBoxItem>
+                <ListBoxItem Style="{StaticResource hover_right_panel}">kot ma ale</ListBoxItem>
+                <ListBoxItem Style="{StaticResource hover_right_panel}">kot ma ale</ListBoxItem>
+
+                <ListBoxItem Style="{StaticResource hover_right_panel}">kot ma ale</ListBoxItem>
+                <ListBoxItem Style="{StaticResource hover_right_panel}">kot ma ale</ListBoxItem>
+                
+            </ListBox>
+
         </StackPanel>
 
         <DockPanel Background="#faebd7" Grid.Column="0" Grid.Row="1">
@@ -97,7 +139,7 @@
 
         </StackPanel>
         <StackPanel Background="#e0ffff" Grid.Column="2" Grid.Row="1">
-            <ComboBox Width="150" Margin="10" x:Name="cmbx">
+            <ComboBox Width="150" Margin="10" x:Name="cmbx" IsEditable="True">
                 <ComboBoxItem>jeden</ComboBoxItem>
                 <ComboBoxItem>dwa</ComboBoxItem>
                 <ComboBoxItem>trzy</ComboBoxItem>
@@ -105,6 +147,10 @@
                 <ComboBoxItem>pięć</ComboBoxItem>
                 <ComboBoxItem>sześć</ComboBoxItem>
                 <ComboBoxItem>siedem</ComboBoxItem>
+                <ComboBoxItem>osiem</ComboBoxItem>
+                <ComboBoxItem>dziewieć</ComboBoxItem>
+                <ComboBoxItem>dziesieć</ComboBoxItem>
+
             </ComboBox>
             <TextBlock Name="Other" Margin="5" Foreground="Purple" Background="LightBlue" Text="{Binding ElementName=cmbx, Path=Text}"></TextBlock>
         </StackPanel>
